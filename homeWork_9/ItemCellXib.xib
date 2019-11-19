@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TwP-IV-EP0" customClass="ItemCell" customModule="homeWork_9" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TwP-IV-EP0" id="M45-iW-c9D">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gq-cy-bxd">
+                        <rect key="frame" x="61" y="8" width="345" height="28"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94h-Ci-yMs">
+                        <rect key="frame" x="22" y="11" width="17" height="22"/>
+                        <state key="normal" image="square.and.pencil" catalog="system"/>
+                        <connections>
+                            <action selector="buttonClicked:" destination="TwP-IV-EP0" eventType="touchDown" id="0ir-Nv-10F"/>
+                            <action selector="buttonClicked:" destination="TwP-IV-EP0" eventType="touchUpInside" id="gPp-gA-Vbh"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8Gq-cy-bxd" firstAttribute="leading" secondItem="M45-iW-c9D" secondAttribute="leading" constant="61" id="HZw-Iq-TJk"/>
+                    <constraint firstAttribute="trailing" secondItem="8Gq-cy-bxd" secondAttribute="trailing" constant="8" id="b24-EZ-3d5"/>
+                    <constraint firstItem="8Gq-cy-bxd" firstAttribute="leading" secondItem="94h-Ci-yMs" secondAttribute="trailing" constant="22" id="bDJ-Cz-KCV"/>
+                    <constraint firstItem="8Gq-cy-bxd" firstAttribute="top" secondItem="M45-iW-c9D" secondAttribute="top" constant="8" id="bPs-QK-QqP"/>
+                    <constraint firstItem="94h-Ci-yMs" firstAttribute="centerY" secondItem="M45-iW-c9D" secondAttribute="centerY" id="pxx-6w-rMq"/>
+                    <constraint firstItem="94h-Ci-yMs" firstAttribute="leading" secondItem="M45-iW-c9D" secondAttribute="leading" constant="22" id="vW1-za-TME"/>
+                    <constraint firstAttribute="bottom" secondItem="8Gq-cy-bxd" secondAttribute="bottom" constant="8" id="x5V-an-vZz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imageButton" destination="94h-Ci-yMs" id="yaR-UC-g7Z"/>
+                <outlet property="labelView" destination="8Gq-cy-bxd" id="KLW-Ws-dJM"/>
+            </connections>
+            <point key="canvasLocation" x="295.6521739130435" y="225.66964285714283"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
+    </resources>
+</document>
