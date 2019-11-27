@@ -7,7 +7,7 @@ class ViewController: UIViewController, cellButtonClickedDelegate {
     @IBOutlet var tableView: UITableView!
     private var emptyLabel: UIView!
     private let refreshControl = UIRefreshControl()
-    private var data: [String] = []
+    private var data: [(String,Bool)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +90,12 @@ extension ViewController: UITableViewDelegate {
         
         let action = UIContextualAction(style: .normal, title: tmp) { (action, view, completionHandler) in
             cell.accessoryType = tmpAT
+            if cell.accessoryType == .checkmark{
+                self.data[indexPath.row].1 = true
+            }else{
+                self.data[indexPath.row].1 = false
+            }
+                
             completionHandler(true)
             
         }
@@ -114,7 +120,14 @@ extension ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.identifier, for: indexPath) as? ItemCell else {return ItemCell()}
-        cell.labelView?.text = data[indexPath.row]
+        cell.labelView?.text = data[indexPath.row].0
+        
+        if(data[indexPath.row].1)
+        {
+            cell.accessoryType = .checkmark
+        }else {
+            cell.accessoryType = .none
+        }
         
         cell.imageButton.setImage(getImage(), for:.normal)
         cell.delegate = self
@@ -147,11 +160,11 @@ extension ViewController {
         
     }
     
-    func getNewData()->[String]{
+    func getNewData()->[(String,Bool)]{
         //Алексей Соболевский сказал что можно получить новые данные, а не перетасовывать старые
-        var tmp: [String] = []
+        var tmp: [(String,Bool)]=[]
         for _ in 0...Int.random(in: 0...1000) {
-            tmp.append(randomString(length: Int.random(in: 1...101)))
+            tmp.append((randomString(length: Int.random(in: 1...101)), false))
         }
         return tmp
     }
