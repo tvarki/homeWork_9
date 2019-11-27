@@ -24,14 +24,14 @@ class ViewController: UIViewController, cellButtonClickedDelegate {
         tableView.register(UINib(nibName: "ItemCellXib", bundle: nil), forCellReuseIdentifier: ItemCell.identifier)
     }
     
-//MARK: - Delegate function for change image on button
+    //MARK: - Delegate function for change image on button
     func iconButtonPress(cell:ItemCell) {
         tableView.beginUpdates()
         cell.imageButton.setImage(getImage(), for:.normal)
         tableView.endUpdates()
     }
     
-//MARK: - PullToRefresh
+    //MARK: - PullToRefresh
     
     private func configurePullToRefresh() {
         refreshControl.tintColor = UIColor.red
@@ -48,7 +48,9 @@ class ViewController: UIViewController, cellButtonClickedDelegate {
     
     @objc private func refreshData(_ sender: UIRefreshControl) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.data = self.getNewData()
+//            self.data = self.getNewData()
+            
+            self.data = self.reloadData(inputArray: self.data)
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
         }
@@ -60,7 +62,7 @@ class ViewController: UIViewController, cellButtonClickedDelegate {
 
 extension ViewController: UITableViewDelegate {
     
-//MARK: - Delete Action
+    //MARK: - Delete Action
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
@@ -70,7 +72,7 @@ extension ViewController: UITableViewDelegate {
         }
     }
     
-//MARK: - Swipe Action
+    //MARK: - Swipe Action
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         guard let cell = tableView.cellForRow(at: indexPath) as? ItemCell else{
@@ -95,7 +97,7 @@ extension ViewController: UITableViewDelegate {
             }else{
                 self.data[indexPath.row].1 = false
             }
-                
+            
             completionHandler(true)
             
         }
@@ -165,6 +167,7 @@ extension ViewController {
         var tmp: [(String,Bool)]=[]
         for _ in 0...Int.random(in: 0...1000) {
             tmp.append((randomString(length: Int.random(in: 1...101)), false))
+            
         }
         return tmp
     }
@@ -175,7 +178,16 @@ extension ViewController {
         return String((0..<length).map{ _ in letters.randomElement()! })
     }
     
-    
+    func reloadData(inputArray : [(String,Bool)]) -> [(String,Bool)]{
+        
+        var tmp = inputArray
+        
+        for _ in 0...Int.random(in: 0...1000) {
+            let temp = tmp.remove(at: Int.random(in: 0...tmp.count-1))
+            tmp.insert(temp, at: Int.random(in: 0...tmp.count-1))
+        }
+        return tmp
+    }
     
     
 }
